@@ -105,18 +105,12 @@ int convert_to_hexdecimal(char *_str,size_t _before_count,size_t _count,char * _
 		if (ctd_flag != 0){
 			break;
 		}
-		#ifdef __GNUC__
-			snprintf(&_dst[i], 1, "%X", result);
-		#else // MSVC
-			_snprintf_s(&_dst[i], 1, 1, "%X", result);
-		#endif
+		sprintf(&_dst[i],"%X", result);
 	}
+	
+
 	if (i % 2 != 0){
-		#ifdef __GNUC__
-			snprintf(&_dst[i], 1, "%X", 0);
-		#else // MSVC
-			_snprintf_s(&_dst[i], 1, 1, "%X", 0);
-		#endif
+		sprintf(&_dst[i], "%X", 0);
 	}
 	_dst[_len] = '\0';
 	return 0;
