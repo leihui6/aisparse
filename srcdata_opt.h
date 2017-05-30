@@ -23,26 +23,17 @@ using namespace std;
 struct revd_msg_s{
 	revd_msg_s() :count(0), msg_p(), major_msg_p(NULL){}
 
-	string get_msg_by_count(size_t _count){ 
-		return string(msg_p[_count]); 
+	string get_msg_by_count(size_t _count){
+		return string(msg_p[_count]);
 	}
-	void set_msg_by_count(size_t _count, const string &_str){ 
-		strncpy(msg_p[_count],_str.data(),1024); 
+	void set_msg_by_count(size_t _count, const string &_str){
+		strncpy(msg_p[_count], _str.data(), 1024);
 	}
-
-	/*string get_major_msg(){
-		return string(major_msg_p);
-	}
-	void set_major_msg(const string &_str){
-		memset(major_msg_p, '\0', _str.size());
-		strncpy(major_msg_p,_str.data(),_str.size());
-	}*/
 
 	size_t count;
 	char msg_p[5][1024];
 	char * major_msg_p;
 };
-
 #endif /*SRCDATA_H*/
 
 void atoi_s_(const char * _str, size_t _len, size_t *_dst);

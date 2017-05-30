@@ -13,12 +13,6 @@
 #ifndef VDM_OPT_H_INCLUDED
 #define VDM_OPT_H_INCLUDED
 
-struct revd_msg_s{
-	size_t count;
-	char msg_p[5][1024];
-	char * major_msg_p;
-};
-
 struct std_time_s{
 	std_time_s() :year(0), month(0), day(0), hour(0), minute(0), second(0){}
 	std_time_s(const std_time_s&_std_time)
