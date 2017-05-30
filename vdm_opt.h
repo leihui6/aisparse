@@ -1,9 +1,9 @@
 #include "vdm_parse_core.h"
 #include "srcdata_opt.h"
 /*
-*	此模块负责获取vdm报文中的内容
+*	姝ゆā鍧楄礋璐ｈ幏鍙杤dm鎶ユ枃涓殑鍐呭
 *	NOTE:
-*		输入：revd_msg_s
+*		杈撳叆锛歳evd_msg_s
 *	
 *	@time:2017-05-30
 *	@author:ptsph@foxmail.com
@@ -81,11 +81,11 @@ struct overall_dimension_s{
 
 typedef overall_dimension_s od_s;
 
-// 使用VDM2或VDM3都是在使用VDM_1
+// 浣跨敤VDM2鎴朧DM3閮芥槸鍦ㄤ娇鐢╒DM_1
 #define VDM_2 VDM_1
 #define VDM_3 VDM_1
 
-// 获取公共数据
+// 鑾峰彇鍏叡鏁版嵁
 namespace VDM{
 	size_t get_message_id(const revd_msg_s * _revd_msg);
 
