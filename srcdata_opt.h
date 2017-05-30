@@ -1,57 +1,179 @@
-#include <cstdio>
-#include <cstring>
-/*
-*	æ­¤æ¨¡å—è´Ÿè´£å¯¹æºæ–‡ä»¶å†…å®¹è¿›è¡Œæ“ä½œ
+/**
+*	´ËÄ£¿éÓÃÓÚ¶ÔÊı¾İÔ´½øĞĞ±ØÒªµÄÕûÀí
+*	ÒÔ¼°½«Ã¿Ìõ±¨ÎÄ´æÎªrevd_msg_s¸ñÊ½
+*	×ÜÖ®£¬ÊÇÔÚÔ´ÎÄ¼şÉÏµÄ²Ù×÷£¬ÈôÍÑÀëÔ´ÎÄ¼ş¾ÍÃ»ÓĞÒâÒå
 *
-*	@time:2017-05-30
-*	@author:ptsph@foxmail.com
+*	Ìá¹©ÁËÒÔÏÂ¼¸¸ö¹¦ÄÜ:
+*		- ½«Êı¾İÔÚ¶ÁÈ¡Ê±½øĞĞ±ØÒªµÄ·ÖÀà
+*		- ½ö½«Êı¾İ¶ÁÈ¡
 *
+*------------------------
+*	2017-01-24
+*	ptsph@foxmail.com
 */
-#ifndef SRCDATA_H_INCLUDED
-#define SRCDATA_H_INCLUDED
+#include <map>
+#include <vector>
+using namespace std;
 
-/*
-*	å°†æ•°å­—å­—ç¬¦ä¸²è½¬ä¸ºæ•°å­—è¿”å›ï¼Œè‹¥å‘ç°éæ•°å­—å­—ç¬¦åˆ™è¿”å›0
-*
-*	ä¾‹å¦‚ï¼š
-*	const char * str = "123456";
-*	char dst[6];
-*	atoi_s_(str,6,dst);
-*	è°ƒç”¨å‡½æ•°ådstä¸ºæ•°å­—123456
-*	
-*
-*/
+#include "vdm_parse_core.h"
+
+#ifndef SRCDATA_H
+#define SRCDATA_H
+
+struct revd_msg_s{
+	revd_msg_s() :count(0), msg_p(), major_msg_p(NULL){}
+	string get_msg_by_count(size_t _count){ return string(msg_p[_count]); }
+	size_t count;
+	char msg_p[5][1024];
+	char * major_msg_p;
+};
+
+#endif /*SRCDATA_H*/
 
 void atoi_s_(const char * _str, size_t _len, size_t *_dst);
 
 /*
-*	æ‰¾åˆ°æŠ¥æ–‡çš„å¤´ä½ç½®ï¼Œæ‰¾ä¸åˆ°åˆ™è¿”å›NULL
+*	»ñÈ¡×Ö·û$_check³öÏÖµÚ$_count´ÎÊıµÄÎ»ÖÃ£¬²»Âú×ãÌõ¼şÔò·µ»ØNULL
+*		
+*	ÀıÈç£º
+*	const char * str = "abc,d,efr,sdf";
+*	find_char_by_count(str,',',3);
+*	½«·µ»ØµÚÈı¸ö','ËùÔÚÎ»ÖÃµÄÖ¸Õë
+*	
+*	NOTE£º
+*	×¢Òâ²»ÊÇ·µ»ØÏÂÒ»¸öÎ»ÖÃµÄÖ¸Õë£¬
+*	ÒòÎªÎÒÃÇÎŞ·¨±£Ö¤ÏÂÒ»¸öÖ¸Õë(next pointer)ÊÇÓĞĞ§µÄ	
 *
-*	ä¾‹å¦‚ï¼š
+*/
+const char * find_char_by_count(const char * _str, char _check, size_t _count);
+
+/*	
+*	ÕÒµ½±¨ÎÄÖĞµÄÖ÷Òª±¨ÎÄ¶Î¿ªÊ¼Î»ÖÃ£¬ÕÒ²»µ½Ôò·µ»ØNULL
+*
+*	ÀıÈç£º
+*	const char * str = "20160322 - 07:09:12	!AIVDM,1,1,,A,B6:V`n00=28I9I4W9pQ4swTWQP06,0*71";
+*	find_major_beg(str);
+*	º¯Êı½«·µ»ØÏÂÃæ¼ıÍ·ËùÊ¾µÄ×Ö·ûËùÔÚÖ¸Õë
+*	20160322 - 07:09:12	!AIVDM,1,1,,A,B6:...
+*									  ^
+*	NOTE£º
+*	±¨ÎÄÖ÷ÒªÄÚÈİ¾Í´Ó´Ë¿ªÊ¼£¬µ«ÊÇÊÇ·ñÓĞĞ§ÎÒÃÇ²»±£Ö¤
+*
+*/
+const char * find_major_beg(const char * _str);
+
+/*
+*	ÕÒµ½±¨ÎÄÖĞµÄÖ÷Òª±¨ÎÄ¶Î½áÊøÎ»ÖÃ£¬ÕÒ²»µ½Ôò·µ»ØNULL
+*
+*	ÀıÈç£º
+*	const char * str = "20160322 - 07:09:12	!AIVDM,1,1,,A,B6:V`n00=28I9I4W9pQ4swTWQP06,0*71";
+*	find_major_end(str);
+*	º¯Êı½«·µ»ØÏÂÃæ¼ıÍ·ËùÊ¾µÄ×Ö·ûËùÔÚÖ¸Õë
+*	20160322 - 07:09:12	!AIVDM,1,1,,A,B6:V`n00=28I9I4W9pQ4swTWQP06,0*71
+*									                              ^
+*	NOTE£º
+*	ÈôÄãÏë±éÀú±¨ÎÄµÄÖ÷ÒªÄÚÈİ£¬Ê¹ÓÃfind_major_begºÍfind_major_endº¯ÊıÔÙÊÊºÏ²»¹ıÁË£¬
+*	¼ÙÉèÇ°Õß·µ»ØµÄÖµÎªbeg£¬ºóÕßÎªend(ÇÒ¶¼²»ÎªNULL)£¬ÄÇÃ´±éÀúµÄÓï¾ä¿ÉÒÔÕâÃ´Ğ´£º
+*	for(const char * i = beg;i < end;i ++){...}
+*	ÕâÃ´×öµÄÒâÒåÊÇÈ·±£±éÀúµÄÏ°¹ßºÍÆ½Ê±Ğ´forÑ­»·µÄÏ°¹ßÒ»Ñù£¬¼´[beg,end)
+*
+*/
+const char * find_major_end(const char * _str);
+
+/*
+*	ÕÒµ½±¨ÎÄµÄÍ·Î»ÖÃ£¬ÕÒ²»µ½Ôò·µ»ØNULL
+*
+*	ÀıÈç£º
 *	const char * str = "20160322 - 07:09:12	!AIVDM,1,1,,A,B6:V`n00=28I9I4W9pQ4swTWQP06,0*71";
 *	find_msg_header(str);
 *
-*	å‡½æ•°å°†è¿”å›ä¸‹é¢ç®­å¤´æ‰€ç¤ºçš„å­—ç¬¦æ‰€åœ¨æŒ‡é’ˆ
+*	º¯Êı½«·µ»ØÏÂÃæ¼ıÍ·ËùÊ¾µÄ×Ö·ûËùÔÚÖ¸Õë
 *	20160322 - 07:09:12	!AIVDM,1,1,,A,B6:V`n00=28I9I4W9pQ4swTWQP06,0*71
 *						^
-*
+*	
 *
 */
 const char * find_msg_header(const char * _str);
 
 /*
-*	è·å–å­—ç¬¦$_checkå‡ºç°ç¬¬$_countæ¬¡æ•°çš„ä½ç½®ï¼Œä¸æ»¡è¶³æ¡ä»¶åˆ™è¿”å›NULL
-*
-*	ä¾‹å¦‚ï¼š
-*	const char * str = "abc,d,efr,sdf";
-*	find_char_by_count(str,',',3);
-*	å°†è¿”å›ç¬¬ä¸‰ä¸ª','æ‰€åœ¨ä½ç½®çš„æŒ‡é’ˆ
-*
-*	NOTEï¼š
-*	æ³¨æ„ä¸æ˜¯è¿”å›ä¸‹ä¸€ä¸ªä½ç½®çš„æŒ‡é’ˆï¼Œ
-*	å› ä¸ºæˆ‘ä»¬æ— æ³•ä¿è¯ä¸‹ä¸€ä¸ªæŒ‡é’ˆ(next pointer)æ˜¯æœ‰æ•ˆçš„
+*	Í¬Ê±·µ»ØÕÒµ½±¨ÎÄµÄÍ·Î»ÖÃºÍ½áÊøÎ»ÖÃ
+*	
+*	NOTE£º
+*	ÏêÏ¸ÄÚÈİÇë¿´find_major_begºÍfind_major_endº¯Êı
 *
 */
-const char * find_char_by_count(const char * _str, char _check, size_t _count);
+int find_major_beg_end(const char * _str, const char ** _beg, const char ** _end);
 
-#endif
+/*
+*	Æ´½Ó±¨ÎÄÖ÷ÒªÄÚÈİ£¬·µ»ØÆ´½Ó½á¹û£¬Ê§°Ü·µ»ØNULL
+*	
+*	ÀıÈç£º
+*	¶ÔÓÚÒÔÏÂÁ½Ìõ±¨ÎÄ£º
+*	20160322 - 07:09:12	!AIVDM,2,1,3,A,C6:`Mo00AB8l@e4Vv@;NGwv0@b30jbM0@2N00000000,0*56
+*	20160322 - 07:09:12	!AIVDM,2,2,3,A,0`3`63S0P,0*20
+*	ÆäÆ´½Ó½á¹ûÎª£º
+*	C6:`Mo00AB8l@e4Vv@;NGwv0@b30jbM0@2N000000000`3`63S0P
+*	
+*	NOTE£º
+*	Æ´½Ó½á¹ûÖ÷ÒªÓÃÓÚµ±·¢ËÍ¶àÌõ±¨ÎÄÊ±µÄ½âÎö
+*
+*/
+char * cat_major_msg(revd_msg_s * _revd_msg);
+
+/*
+*	°´ÕÕ±¨ÎÄÌõÊı½ÓÊÜ±¨ÎÄ
+*	
+*	ÀıÈç£º
+*	¶ÔÓÚÒÔÏÂÁ½Ìõ±¨ÎÄ£º
+*	20160322 - 07:09:12	!AIVDM,2,1,3,A,C6:`Mo00AB8l@e4Vv@;NGwv0@b30jbM0@2N00000000,0*56
+*	20160322 - 07:09:12	!AIVDM,2,2,3,A,0`3`63S0P,0*20
+*	Ê¹ÓÃrecv_all_msgº¯Êıºó»á½«½á¹û´æ´¢ÔÚ$_revd_msgÖĞ
+*
+*
+*/
+int recv_all_msg(revd_msg_s * _revd_msg,FILE **_fp);
+
+/*
+*	Çå³ırevd_msg_s½á¹¹
+*	
+*	NOTE£º
+*	Çå³ıÒâÎ¶×Å½«ÀïÃæµÄÊı¾İÇå¿Õ£¬¼´¶¼ÉèÖÃÎª'\0'
+*	¶ø²»ÊÇÊÍ·Å
+*/
+int clear_revd_msg(revd_msg_s *_revd_msg);
+
+/*
+*	½«ÎÄ±¾Êı¾İÖĞµÄ±¨ÎÄ¼ÓÔØµ½$_revd_msg_vec½á¹¹ÖĞ
+*	revd_msg_s½á¹¹ÈçÏÂ£º
+*	struct revd_msg_s{
+*		size_t count;
+*		char msg_p[5][1024];
+*	};
+*	
+*	
+*	
+*/
+int read_srcdata(const char * _filename, vector<revd_msg_s> &_revd_msg_vec);
+
+int classify_by_user_id(char * _filename,map<size_t,vector<revd_msg_s> > &_userid_map_msg);
+
+int save_by_user_id(map<size_t,vector<revd_msg_s> > &_userid_map_msg);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
