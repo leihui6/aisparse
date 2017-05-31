@@ -4,7 +4,7 @@
 *	此模块负责获取vdm报文中的内容
 *	NOTE:
 *		输入：revd_msg_s
-*	
+*
 *	@time:2017-05-30
 *	@author:ptsph@foxmail.com
 *
@@ -74,13 +74,11 @@ struct overall_dimension_s{
 };
 
 typedef overall_dimension_s od_s;
-
-// 使用VDM2或VDM3都是在使用VDM_1
 #define VDM_2 VDM_1
 #define VDM_3 VDM_1
 
-// 获取公共数据
-namespace VDM{
+// VDM
+struct VDM{
 	size_t get_message_id(const revd_msg_s * _revd_msg);
 
 	size_t get_repeat_indicator(const revd_msg_s * _revd_msg);
@@ -89,10 +87,10 @@ namespace VDM{
 
 	std_time_s get_revd_time(const revd_msg_s *_revd_msg);
 
-	char get_channel(const revd_msg_s *_revd_msg);
-}
+	string get_channel(const revd_msg_s *_revd_msg);
+};
 
-namespace VDM_1{
+struct VDM_1{
 	size_t get_navigational_status(const revd_msg_s *_revd_msg);
 
 	size_t get_sog(const revd_msg_s *_revd_msg);
@@ -104,18 +102,9 @@ namespace VDM_1{
 	size_t get_longitude(const revd_msg_s *_revd_msg);
 
 	size_t get_latitude(const revd_msg_s *_revd_msg);
-}
+};
 
-namespace VDM_2{
-
-}
-
-namespace VDM_3{
-
-}
-
-namespace VDM_5{
-
+struct VDM_5{
 	size_t get_imo_number(const revd_msg_s *_revd_msg);
 
 	string get_call_sign(const revd_msg_s *_revd_msg);
@@ -125,33 +114,25 @@ namespace VDM_5{
 	od_s get_overall_dimension(const revd_msg_s *_revd_msg);
 
 	size_t get_maximum_draught(const revd_msg_s *_revd_msg);
-}
+};
 
-namespace VDM_6{
+struct VDM_6{
 	string get_application_data(const revd_msg_s *_revd_msg);
-}
+};
 
-namespace VDM_7{
-
-}
-
-namespace VDM_8{
+struct VDM_8{
 	string get_application_data(const revd_msg_s *_revd_msg);
-}
+};
 
-namespace VDM_12{
+struct VDM_12{
 	string get_safety_text(const revd_msg_s *_revd_msg);
-}
+};
 
-namespace VDM_13{
-
-}
-
-namespace VDM_14{
+struct VDM_14{
 	string get_safety_text(const revd_msg_s *_revd_msg);
-}
+};
 
-namespace VDM_18{
+struct VDM_18{
 	size_t get_sog(const revd_msg_s *_revd_msg);
 
 	size_t get_cog(const revd_msg_s *_revd_msg);
@@ -161,15 +142,6 @@ namespace VDM_18{
 	size_t get_longitude(const revd_msg_s *_revd_msg);
 
 	size_t get_latitude(const revd_msg_s *_revd_msg);
-
-}
-
-namespace VDM_19{
-
-}
-
-namespace VDM_24{
-
-}
+};
 
 #endif // VDM_OPT_H_INCLUDED

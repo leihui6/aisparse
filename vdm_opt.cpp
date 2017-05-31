@@ -56,20 +56,20 @@ std_time_s VDM::get_revd_time(const revd_msg_s *_revd_msg){
 	return std_time;
 }
 
-char VDM::get_channel(const revd_msg_s *_revd_msg){
+string VDM::get_channel(const revd_msg_s *_revd_msg){
 	const char * first_msg_p = _revd_msg->msg_p[0];
 	const char * p = find_msg_header(first_msg_p);
 	if (p == NULL){
-		return 1;
+		return string();
 	}
 	p = find_char_by_count(p, ',', 4);
 	if (p == NULL){
-		return 1;
+		return string();
 	}
 	if (*(p + 1) != 'A' && *(p + 1) != 'B'){
-		return 1;
+		return string();
 	}
-	return *(p + 1);
+	return string((p + 1),1);
 }
 
 size_t VDM_1::get_navigational_status(const revd_msg_s *_revd_msg){
@@ -133,7 +133,7 @@ string VDM_5::get_call_sign(const revd_msg_s *_revd_msg){
 	
 	convert_to_strascii(_revd_msg->major_msg_p, 70, 42, call_sign, 7);
 	
-	return string(call_sign);
+	return (call_sign);
 }
 
 string VDM_5::get_name(const revd_msg_s *_revd_msg){
@@ -141,7 +141,7 @@ string VDM_5::get_name(const revd_msg_s *_revd_msg){
 	
 	convert_to_strascii(_revd_msg->major_msg_p, 112, 120, name, 20);
 
-	return string(name);
+	return (name);
 }
 
 od_s VDM_5::get_overall_dimension(const revd_msg_s *_revd_msg){
@@ -166,7 +166,7 @@ string VDM_6::get_application_data(const revd_msg_s *_revd_msg){
 	
 	convert_to_hexdecimal(_revd_msg->major_msg_p, 88, 920, application_data, 230);
 
-	return string(application_data);
+	return (application_data);
 }
 
 string VDM_8::get_application_data(const revd_msg_s *_revd_msg){
@@ -174,7 +174,7 @@ string VDM_8::get_application_data(const revd_msg_s *_revd_msg){
 
 	convert_to_hexdecimal(_revd_msg->major_msg_p, 56, 952, application_data, 238);
 
-	return string(application_data);
+	return (application_data);
 }
 
 string VDM_12::get_safety_text(const revd_msg_s *_revd_msg){
@@ -182,7 +182,7 @@ string VDM_12::get_safety_text(const revd_msg_s *_revd_msg){
 
 	convert_to_strascii(_revd_msg->major_msg_p, 72, 936, safety_text, 156);
 
-	return string(safety_text);
+	return (safety_text);
 }
 
 string VDM_14::get_safety_text(const revd_msg_s *_revd_msg){
@@ -195,7 +195,7 @@ string VDM_14::get_safety_text(const revd_msg_s *_revd_msg){
 
 	convert_to_strascii(_revd_msg->major_msg_p, 40, 966, safety_text, 161);
 	
-	return string(safety_text);
+	return (safety_text);
 }
 
 size_t VDM_18::get_sog(const revd_msg_s *_revd_msg){
