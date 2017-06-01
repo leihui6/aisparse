@@ -15,29 +15,6 @@
 
 struct std_time_s{
 	std_time_s() :year(0), month(0), day(0), hour(0), minute(0), second(0){}
-	std_time_s(const std_time_s&_std_time)
-	{
-		year = _std_time.year;
-		month = _std_time.month;
-		day = _std_time.day;
-		hour = _std_time.hour;
-		minute = _std_time.minute;
-		second = _std_time.second;
-	}
-	std_time_s & operator=(const std_time_s &_std_time){
-		if (this == &_std_time){
-			return *this;
-		}
-		else{
-			year = _std_time.year;
-			month = _std_time.month;
-			day = _std_time.day;
-			hour = _std_time.hour;
-			minute = _std_time.minute;
-			second = _std_time.second;
-			return *this;
-		}
-	}
 	size_t year;
 	size_t month;
 	size_t day;
@@ -48,25 +25,6 @@ struct std_time_s{
 
 struct overall_dimension_s{
 	overall_dimension_s() :A(0), B(0), C(0), D(0){}
-	overall_dimension_s(const overall_dimension_s&_od)
-	{
-		A = _od.A;
-		B = _od.B;
-		C = _od.C;
-		D = _od.D;
-	}
-	overall_dimension_s & operator=(const overall_dimension_s &_od){
-		if (this == &_od){
-			return *this;
-		}
-		else{
-			A = _od.A;
-			B = _od.B;
-			C = _od.C;
-			D = _od.D;
-			return *this;
-		}
-	}
 	size_t A;
 	size_t B;
 	size_t C;
@@ -74,6 +32,7 @@ struct overall_dimension_s{
 };
 
 typedef overall_dimension_s od_s;
+
 #define VDM_2 VDM_1
 #define VDM_3 VDM_1
 

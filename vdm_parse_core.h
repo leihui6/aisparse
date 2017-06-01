@@ -23,11 +23,13 @@ unsigned char convert_to_sixascii(char _p);
 
 unsigned char convert_to_sixchar(char _p);
 
+int convert_to_signed_number(size_t _num, size_t _total_bits);
+
 int convert_to_decimal_special(const char * _str,size_t _beg,size_t _end,size_t _r_need,size_t _l_need,size_t * _result);
 
 int convert_to_decimal(const char * _str,size_t _before_count,size_t _count,size_t *_result);
 
-int convert_to_hexdecimal(char *_str,size_t _before_count,size_t _count,char * _dst,size_t _len);
+int convert_to_hexdecimal(const char *_str,size_t _before_count,size_t _count,char * _dst,size_t _len);
 
 int convert_to_strascii(const char * _str, size_t _before_count, size_t _count, char * _dst, size_t _len);
 

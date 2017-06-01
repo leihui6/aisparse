@@ -84,7 +84,7 @@ const char * find_msg_header(const char * _str){
 
 int recv_all_msg(revd_msg_s * _revd_msg,FILE **_fp){
 	const char * p = NULL;
-	const char * first_msg_p = _revd_msg->msg_p[0];
+	const char * first_msg_p = _revd_msg->msg[0].c_str();
 	p = find_msg_header(first_msg_p);
 
 	if(p == NULL){
@@ -99,15 +99,18 @@ int recv_all_msg(revd_msg_s * _revd_msg,FILE **_fp){
 	}
 	_revd_msg->count = *(++p) - 48;
 
+	char input[1024];
+
 	for(size_t i = 1;i<_revd_msg->count;i++){
-		fgets(_revd_msg->msg_p[i],1024,*_fp);
+		fgets(input, 1024, *_fp);
+		_revd_msg->msg[i] = input;
 	}
 	return 0;
 }
 
 int clear_revd_msg(revd_msg_s *_revd_msg){
 	_revd_msg->count = 0;
-	memset(&(_revd_msg->msg_p),'\0',sizeof(_revd_msg->msg_p)/sizeof(char));
+	//memset(&(_revd_msg->msg_p),'\0',sizeof(_revd_msg->msg_p)/sizeof(char));
 	return 0;
 }
 
@@ -122,7 +125,7 @@ char * cat_major_msg(revd_msg_s * _revd_msg){
 	char *all_major_msg_tmp = all_major_msg;
 
 	for (size_t i = 0; i < _revd_msg->count; i++){
-		find_major_beg_end(_revd_msg->msg_p[i], &beg, &end);
+		find_major_beg_end(_revd_msg->msg[i].c_str(), &beg, &end);
 
 		if (beg == NULL || end == NULL){
 			free(all_major_msg_tmp);
@@ -144,20 +147,19 @@ int classify_by_user_id(char * _filename,map<size_t,vector<revd_msg_s> > &_useri
 		return 1;
 	}
 
-	char * str_vdm_pos = NULL;
 	char * major_msg = NULL;
 	size_t user_id = 0;
 
 	revd_msg_s revd_msg;
 	clear_revd_msg(&revd_msg);
+	char input[1024];
 
 	while(!feof(fp)){
-		fgets(revd_msg.msg_p[0],1024,fp);
+		fgets(input, 1024, fp);
+		revd_msg.msg[0] = input;
 
 		// 判断是否为vdm类型的报文.
-		str_vdm_pos = strstr(revd_msg.msg_p[0],"VDM");
-
-		if (str_vdm_pos != NULL ){
+		if (string::npos != revd_msg.msg[0].find("VDM")){
 			// 将多行报文一起接收.
 			recv_all_msg(&revd_msg,&fp);
 			major_msg = cat_major_msg(&revd_msg);
@@ -201,7 +203,7 @@ int save_by_user_id(map<size_t,vector<revd_msg_s> > &_userid_map_msg){
 		wend = uit->second.end();
 		while (wit != wend) {
 			for (size_t i = 0;i < wit->count;i++){
-				fprintf(wfp,"%s",wit->msg_p[i]);
+				fprintf(wfp,"%s",wit->msg[i].c_str());
 			}
 			wit++;
 		}
@@ -223,17 +225,16 @@ int read_srcdata(const char * _filename , vector<revd_msg_s> &_revd_msg_vec){
 
 	revd_msg_s revd_msg;
 	clear_revd_msg(&revd_msg);
-
+	char input[1024];
 	while(!feof(fp)){
-		fgets(revd_msg.msg_p[0],1024,fp);
+		fgets(input, 1024, fp);
+		revd_msg.msg[0] = input;
 
 		// 判断是否为vdm类型的报文.
-		str_vdm_pos = strstr(revd_msg.msg_p[0],"VDM");
-
-		if (str_vdm_pos != NULL ){
+		if (revd_msg.msg[0].find("VDM") != string::npos){
 
 			recv_all_msg(&revd_msg,&fp);
-			revd_msg.major_msg_p = cat_major_msg(&revd_msg);
+			revd_msg.major_msg = (cat_major_msg(&revd_msg));
 			
 			_revd_msg_vec.push_back(revd_msg);
 

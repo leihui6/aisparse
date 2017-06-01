@@ -13,6 +13,8 @@
 */
 #include <map>
 #include <vector>
+#include <fstream>
+
 using namespace std;
 
 #include "vdm_parse_core.h"
@@ -20,23 +22,20 @@ using namespace std;
 #ifndef SRCDATA_H
 #define SRCDATA_H
 
-struct revd_msg_s{
-	revd_msg_s() :count(0), msg_p(), major_msg_p(NULL){}
+const size_t MAXCOUNT = 5;
 
-	string get_msg_by_count(size_t _count){
-		return (msg_p[_count]);
-	}
-	void set_msg_by_count(size_t _count, const string &_str){
-		_str.copy(msg_p[_count], 1024, 0);
-	}
+struct revd_msg_s{
+	revd_msg_s() :count(0), msg(),major_msg(){}
 
 	size_t count;
-	char msg_p[5][1024];
-	char * major_msg_p;
+	string msg[MAXCOUNT];
+	string major_msg;
 };
 #endif /*SRCDATA_H*/
 
 void atoi_s_(const char * _str, size_t _len, size_t *_dst);
+
+
 
 /*
 *	获取字符$_check出现第$_count次数的位置，不满足条件则返回NULL
