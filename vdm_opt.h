@@ -58,9 +58,9 @@ struct VDM_1{
 
 	size_t get_true_heading(const revd_msg_s *_revd_msg);
 
-	size_t get_longitude(const revd_msg_s *_revd_msg);
+	int get_longitude(const revd_msg_s *_revd_msg);
 
-	size_t get_latitude(const revd_msg_s *_revd_msg);
+	int get_latitude(const revd_msg_s *_revd_msg);
 };
 
 struct VDM_5{
@@ -98,9 +98,9 @@ struct VDM_18{
 
 	size_t get_true_heading(const revd_msg_s *_revd_msg);
 
-	size_t get_longitude(const revd_msg_s *_revd_msg);
+	int get_longitude(const revd_msg_s *_revd_msg);
 
-	size_t get_latitude(const revd_msg_s *_revd_msg);
+	int get_latitude(const revd_msg_s *_revd_msg);
 };
 
 #endif // VDM_OPT_H_INCLUDED

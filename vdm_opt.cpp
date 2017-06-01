@@ -104,20 +104,20 @@ size_t VDM_1::get_true_heading(const revd_msg_s *_revd_msg){
 	return true_heading;
 }
 
-size_t VDM_1::get_longitude(const revd_msg_s *_revd_msg){
+int VDM_1::get_longitude(const revd_msg_s *_revd_msg){
 	size_t longitude = 0;
 
 	convert_to_decimal(_revd_msg->major_msg.c_str(), 61, 28, &longitude);
 
-	return (size_t)convert_to_signed_number(longitude, 28);
+	return convert_to_signed_number(longitude, 28);
 }
 
-size_t VDM_1::get_latitude(const revd_msg_s *_revd_msg){
+int VDM_1::get_latitude(const revd_msg_s *_revd_msg){
 	size_t latitude = 0;
 
 	convert_to_decimal(_revd_msg->major_msg.c_str(), 89, 27, &latitude);
 	
-	return (size_t)convert_to_signed_number(latitude, 27);
+	return convert_to_signed_number(latitude, 27);
 }
 
 size_t VDM_5::get_imo_number(const revd_msg_s *_revd_msg){
@@ -222,18 +222,18 @@ size_t VDM_18::get_true_heading(const revd_msg_s *_revd_msg){
 	return true_heading;
 }
 
-size_t VDM_18::get_longitude(const revd_msg_s *_revd_msg){
+int VDM_18::get_longitude(const revd_msg_s *_revd_msg){
 	size_t longitude = 0;
 
 	convert_to_decimal(_revd_msg->major_msg.c_str(), 57, 28, &longitude);
 	
-	return (size_t)convert_to_signed_number(longitude, 28);
+	return convert_to_signed_number(longitude, 28);
 }
 
-size_t VDM_18::get_latitude(const revd_msg_s *_revd_msg){
+int VDM_18::get_latitude(const revd_msg_s *_revd_msg){
 	size_t latitude = 0;
 
 	convert_to_decimal(_revd_msg->major_msg.c_str(), 85, 27, &latitude);
 
-	return (size_t)convert_to_signed_number(latitude, 27);
+	return convert_to_signed_number(latitude, 27);
 }
