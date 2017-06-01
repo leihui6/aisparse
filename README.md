@@ -1,6 +1,6 @@
 # ais_parse
 
-对获取进行了封装，这意味这接口的添加与调用将会更方便。
+对获取功能进行了封装，这意味这接口的添加与调用将会更方便。
 
 | Compiler     |  Status   |
 |--------|--------|
@@ -13,14 +13,14 @@
 例如：
 你需要获取VDM报文编号为1的Longitude信息，根据标准，Longitude占用28个比特位，在这之前有61个比特位。
 
-你可以在VDM_1中找到相关函数 `size_t get_longitude(const revd_msg_s *_revd_msg);`
+你可以在VDM_1中找到相关函数 `int get_longitude(const revd_msg_s *_revd_msg);`
 
 之后你会发现实现十分简单：
 
-	size_t VDM_1::get_longitude(const revd_msg_s *_revd_msg){
+	int VDM_1::get_longitude(const revd_msg_s *_revd_msg){
 		size_t longitude = 0;
 		convert_to_decimal(_revd_msg->major_msg_p, 61, 28, &longitude);
-		return longitude;
+		return convert_to_signed_number(longitude, 28);
 	}
 
 当然同样的规则也同样适用于获取其它信息。
@@ -61,9 +61,9 @@
 
 - `size_t get_true_heading(const revd_msg_s *_revd_msg)`
 
-- `size_t get_longitude(const revd_msg_s *_revd_msg)`
+- `int get_longitude(const revd_msg_s *_revd_msg)`
 
-- `size_t get_latitude(const revd_msg_s *_revd_msg)`
+- `int get_latitude(const revd_msg_s *_revd_msg)`
 
 
 ## VDM_2<span id="2">&nbsp;</span>
@@ -119,9 +119,9 @@
 
 - `size_t get_true_heading(const revd_msg_s *_revd_msg)`
 
-- `size_t get_longitude(const revd_msg_s *_revd_msg)`
+- `int get_longitude(const revd_msg_s *_revd_msg)`
 
-- `size_t get_latitude(const revd_msg_s *_revd_msg)`
+- `int get_latitude(const revd_msg_s *_revd_msg)`
 
 ## VDM_19<span id="19">&nbsp;</span>
 
