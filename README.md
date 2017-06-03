@@ -30,9 +30,8 @@
 ### 以下是目前版本所提供的api
 
 ----------
-
-* <a href="#24">VDM5</a> 
-* [VDM_1](#1) &nbsp; [VDM_2](#2) &nbsp; [VDM_3](#3)
+* [VDM](#VDM(公共信息))
+* [VDM_1](#VDM_1) &nbsp; [VDM_2](#2) &nbsp; [VDM_3](#3)
 * [VDM_5](#5) &nbsp; [VDM_6](#6) &nbsp; [VDM_7](#7)
 * [VDM_8](#8) &nbsp; [VDM_12](#12) &nbsp;[VDM_13](#13)
 * [VDM_14](#14) &nbsp; [VDM_18](#18) &nbsp;[VDM_19](#19)
