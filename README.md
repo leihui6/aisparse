@@ -68,11 +68,11 @@
 
 ## VDM_2<span id="2">&nbsp;</span>
 
-- 见VDM1
+- 同VDM1
 
 ## VDM_3<span id="3">&nbsp;</span>
 
-- 见VDM1
+- 同VDM1
 
 ## VDM_5<span id="5">&nbsp;</span>
 
@@ -91,10 +91,6 @@
 
 - `string get_application_data(const revd_msg_s *_revd_msg)`
 
-## VDM_7<span id="7">&nbsp;</span>
-
-- not yet
-
 ## VDM_8<span id="8">&nbsp;</span>
 
 - `string get_application_data(const revd_msg_s *_revd_msg)`
@@ -102,10 +98,6 @@
 ## VDM_12<span id="12">&nbsp;</span>
 
 - `string get_safety_text(const revd_msg_s *_revd_msg)`
-
-## VDM_13<span id="13">&nbsp;</span>
-
-- not yet
 
 ## VDM_14<span id="14">&nbsp;</span>
 
@@ -122,11 +114,3 @@
 - `int get_longitude(const revd_msg_s *_revd_msg)`
 
 - `int get_latitude(const revd_msg_s *_revd_msg)`
-
-## VDM_19<span id="19">&nbsp;</span>
-
-- not yet
-
-## VDM_24<span id="README.md#24">&nbsp;</span>
-
-- not yet
