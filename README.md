@@ -30,16 +30,14 @@
 ### 以下是目前版本所提供的api
 
 ----------
-
-* <a href="#24">VDM5</a> 
-* [VDM_1](#1) &nbsp; [VDM_2](#2) &nbsp; [VDM_3](#3)
-* [VDM_5](#5) &nbsp; [VDM_6](#6) &nbsp; [VDM_7](#7)
-* [VDM_8](#8) &nbsp; [VDM_12](#12) &nbsp;[VDM_13](#13)
-* [VDM_14](#14) &nbsp; [VDM_18](#18) &nbsp;[VDM_19](#19)
-* [VDM_24](#24)
+* [VDM(公共信息)](#VDM(公共信息)) &nbsp; 
+* [VDM_1](#VDM_1) &nbsp; [VDM_2](#VDM_2) &nbsp; 
+* [VDM_3](#VDM_3) &nbsp; [VDM_6](#VDM_6) &nbsp; 
+* [VDM_8](#VDM_8) &nbsp; [VDM_12](#VDM_12) &nbsp; 
+* [VDM_14](#VDM_14) &nbsp; [VDM_18](#VDM_18) &nbsp;
 
 
-## VDM(公共信息)<span id="0">&nbsp;</span>
+## VDM(公共信息)
 
 - `size_t get_message_id(const revd_msg_s * _revd_msg)`
 
@@ -51,7 +49,7 @@
 
 - `char get_channel(const revd_msg_s *_revd_msg)`
 
-## VDM_1<span id="1">&nbsp;</span>
+## VDM_1
 
 - `size_t get_navigational_status(const revd_msg_s *_revd_msg)`
 
@@ -66,15 +64,15 @@
 - `int get_latitude(const revd_msg_s *_revd_msg)`
 
 
-## VDM_2<span id="2">&nbsp;</span>
+## VDM_2
 
 - 同VDM1
 
-## VDM_3<span id="3">&nbsp;</span>
+## VDM_3
 
 - 同VDM1
 
-## VDM_5<span id="5">&nbsp;</span>
+## VDM_5
 
 - `size_t get_imo_number(const revd_msg_s *_revd_msg)`
 
@@ -87,23 +85,23 @@
 - `size_t get_maximum_draught(const revd_msg_s *_revd_msg)_maximum_draught)`
 
 
-## VDM_6<span id="6">&nbsp;</span>
+## VDM_6
 
 - `string get_application_data(const revd_msg_s *_revd_msg)`
 
-## VDM_8<span id="8">&nbsp;</span>
+## VDM_8
 
 - `string get_application_data(const revd_msg_s *_revd_msg)`
 
-## VDM_12<span id="12">&nbsp;</span>
+## VDM_12
 
 - `string get_safety_text(const revd_msg_s *_revd_msg)`
 
-## VDM_14<span id="14">&nbsp;</span>
+## VDM_14
 
 - `string get_safety_text(const revd_msg_s *_revd_msg)`
 
-## VDM_18<span id="18">&nbsp;</span> 
+## VDM_18
 
 - `size_t get_sog(const revd_msg_s *_revd_msg)`
 
