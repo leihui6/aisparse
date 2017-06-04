@@ -36,7 +36,6 @@
 * [VDM_3](#VDM_3) &nbsp; [VDM_6](#VDM_6) &nbsp; 
 * [VDM_8](#VDM_8) &nbsp; [VDM_12](#VDM_12) &nbsp; 
 * [VDM_14](#VDM_14) &nbsp; [VDM_18](#VDM_18) &nbsp;
-
 ## VDM(公共信息)
 
 - `size_t get_message_id(const revd_msg_s * _revd_msg)`
