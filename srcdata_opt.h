@@ -4,23 +4,20 @@
 *	总之，是在源文件上的操作，若脱离源文件就没有意义
 *
 *	提供了以下几个功能:
-*		- 将数据在读取时进行必要的分类
-*		- 仅将数据读取
-*
+*		- 将数据在读取时进行必要的分类 [NOTE:测试使用]
+*		- 仅将数据读取 [NOTE:测试使用]
+*	
 *------------------------
-*	2017-01-24
-*	ptsph@foxmail.com
+*	@time:2017-01-24
+*	@author:ptsph@foxmail.com
 */
-#include <map>
-#include <vector>
-#include <fstream>
-
-using namespace std;
-
-#include "vdm_parse_core.h"
-
 #ifndef SRCDATA_H
 #define SRCDATA_H
+
+#include <map> // For test
+#include <vector>
+#include <fstream>
+#include "vdm_parse_core.h"
 
 const size_t MAXCOUNT = 5;
 
@@ -42,8 +39,6 @@ struct revd_msg_s{
 #endif /*SRCDATA_H*/
 
 void atoi_s_(const char * _str, size_t _len, size_t *_dst);
-
-
 
 /*
 *	获取字符$_check出现第$_count次数的位置，不满足条件则返回NULL

@@ -10,14 +10,14 @@
 *
 */
 
+#ifndef VDM_PARSE_CORE_H_INCLUDED
+#define VDM_PARSE_CORE_H_INCLUDED
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <string>
 using namespace std;
-
-#ifndef VDM_PARSE_CORE_H_INCLUDED
-#define VDM_PARSE_CORE_H_INCLUDED
 
 unsigned char convert_to_sixascii(char _p);
 

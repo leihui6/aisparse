@@ -1,4 +1,3 @@
-#include "vdm_parse_core.h"
 #include "srcdata_opt.h"
 /*
 *	此模块负责获取vdm报文中的内容

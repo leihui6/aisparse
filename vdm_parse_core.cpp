@@ -4,7 +4,7 @@ unsigned char convert_to_sixascii(char _p){
 	if(_p <= 87 && _p >= 48){
 		return _p-48;
 	}
-	else {
+	else { 
 		return _p-56;
 	}
 }
@@ -127,18 +127,3 @@ int convert_to_hexdecimal(const char *_str,size_t _before_count,size_t _count,ch
 	_dst[_len] = '\0';
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
