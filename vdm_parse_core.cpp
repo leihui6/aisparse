@@ -4,7 +4,7 @@ unsigned char convert_to_sixascii(char _p){
 	if(_p <= 87 && _p >= 48){
 		return _p-48;
 	}
-	else { 
+	else {
 		return _p-56;
 	}
 }
@@ -36,8 +36,7 @@ int convert_to_decimal_special(const char * _str,size_t _beg,size_t _end,size_t 
 
 	for (size_t i = _beg;i < _end;i++) {
 		if (_str[i] == '\0'){
-			*_result = rst;
-			return 1;
+			break;
 		}
 		p = convert_to_sixascii(_str[i]);
 		if (i == _end-1 ){
@@ -68,9 +67,11 @@ int convert_to_decimal(const char * _str,size_t _before_count,size_t _count,size
 	size_t l_need = (_before_count + _count) % 6;
 
 	size_t len = strlen(_str);
-	if(beg > len-1){
+	// 越界检查
+	if ((_before_count + _count) > len * 6){
 		return 1;
 	}
+	// 比特读取位重置
 	if(end == len+1){
 		l_need = 0;
 	}
@@ -120,10 +121,25 @@ int convert_to_hexdecimal(const char *_str,size_t _before_count,size_t _count,ch
 		}
 		sprintf(&_dst[i],"%X", result);
 	}
-	
+	//奇数个数用0补全至偶数位数
 	if (i % 2 != 0){
 		sprintf(&_dst[i], "%X", 0);
 	}
 	_dst[_len] = '\0';
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
