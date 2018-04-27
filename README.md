@@ -41,7 +41,7 @@
 * [VDM_18](#VDM_18)
 
 
-### VDM(公共信息)
+### <span id="VDM(公共信息)">VDM(公共信息)</span>
 
 * `size_t get_message_id(const revd_msg_s * _revd_msg)`
 
@@ -53,7 +53,7 @@
 
 * `char get_channel(const revd_msg_s *_revd_msg)`
 
-### VDM_1
+### <span id="VDM_1">VDM_1</span>
 
 * `size_t get_navigational_status(const revd_msg_s *_revd_msg)`
 
@@ -68,15 +68,15 @@
 * `int get_latitude(const revd_msg_s *_revd_msg)`
 
 
-### VDM_2
+### <span id="VDM_2">VDM_2</span>
 
 * 同VDM1
 
-### VDM_3
+### <span id="VDM_3">VDM_3</span>
 
 * 同VDM1
 
-### VDM_5
+### <span id="VDM_5">VDM_5</span>
 
 * `size_t get_imo_number(const revd_msg_s *_revd_msg)`
 
@@ -89,23 +89,23 @@
 * `size_t get_maximum_draught(const revd_msg_s *_revd_msg)_maximum_draught)`
 
 
-### VDM_6
+### <span id="VDM_6">VDM_6</span>
 
 * `string get_application_data(const revd_msg_s *_revd_msg)`
 
-### VDM_8
+### <span id="VDM_8">VDM_8</span>
 
 * `string get_application_data(const revd_msg_s *_revd_msg)`
 
-### VDM_12
+### <span id="VDM_12">VDM_12</span>
 
 * `string get_safety_text(const revd_msg_s *_revd_msg)`
 
-### VDM_14
+### <span id="VDM_14">VDM_14</span>
 
 * `string get_safety_text(const revd_msg_s *_revd_msg)`
 
-### VDM_18
+### <span id="VDM_18">VDM_18</span>
 
 * `size_t get_sog(const revd_msg_s *_revd_msg)`
 
