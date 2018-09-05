@@ -1,5 +1,5 @@
 /*
-* 提供使用案例
+* examples
 *
 * @time:2018-09-05
 * @author:ptsph@foxmail.com
