@@ -67,11 +67,11 @@ int convert_to_decimal(const char * _str,size_t _before_count,size_t _count,size
 	size_t l_need = (_before_count + _count) % 6;
 
 	size_t len = strlen(_str);
-	// Ô½½ç¼ì²é
+	// è¶Šç•Œæ£€æŸ¥
 	if ((_before_count + _count) > len * 6){
 		return 1;
 	}
-	// ±ÈÌØ¶ÁÈ¡Î»ÖØÖÃ
+	// æ¯”ç‰¹è¯»å–ä½é‡ç½®
 	if(end == len+1){
 		l_need = 0;
 	}
@@ -119,11 +119,11 @@ int convert_to_hexdecimal(const char *_str,size_t _before_count,size_t _count,ch
 		if (ctd_flag != 0){
 			break;
 		}
-		sprintf(&_dst[i],"%X", result);
+		sprintf(&_dst[i],"%X", (unsigned int)result);
 	}
-	//ÆæÊı¸öÊıÓÃ0²¹È«ÖÁÅ¼ÊıÎ»Êı
+	//å¥‡æ•°ä¸ªæ•°ç”¨0è¡¥å…¨è‡³å¶æ•°ä½æ•°
 	if (i % 2 != 0){
-		sprintf(&_dst[i], "%X", 0);
+		sprintf(&_dst[i], "%X", (unsigned int)0);
 	}
 	_dst[_len] = '\0';
 	return 0;

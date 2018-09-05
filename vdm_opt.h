@@ -1,4 +1,3 @@
-#include "srcdata_opt.h"
 /*
 *	此模块负责获取vdm报文中的内容
 *	NOTE:
@@ -8,9 +7,33 @@
 *	@author:ptsph@foxmail.com
 *
 */
-
 #ifndef VDM_OPT_H_INCLUDED
 #define VDM_OPT_H_INCLUDED
+
+#include "vdm_parse_core.h"
+
+
+void atoi_s_(const char * _str, size_t _len, size_t *_dst);
+
+const char * find_msg_header(const char * _str);
+
+const char * find_char_by_count(const char * _str, char _check, size_t _count);
+
+struct revd_msg_s{
+	revd_msg_s() :count(0), msg(),major_msg(){}
+
+	void set_msg_by_count(size_t _count,const string &_str){
+		msg[_count] = _str;
+	}
+
+	string get_msg_by_count(size_t _count){
+		return msg[_count];
+	}
+
+	size_t count;
+	string msg[MAXCOUNT];
+	string major_msg;
+};
 
 struct std_time_s{
 	std_time_s() :year(0), month(0), day(0), hour(0), minute(0), second(0){}

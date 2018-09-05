@@ -19,6 +19,8 @@
 #include <string>
 using namespace std;
 
+const size_t MAXCOUNT = 5;
+
 unsigned char convert_to_sixascii(char _p);
 
 unsigned char convert_to_sixchar(char _p);
